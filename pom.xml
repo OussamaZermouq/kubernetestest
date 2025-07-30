@@ -83,6 +83,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>kubernetes-test</finalName>
 	</build>
 
 </project>

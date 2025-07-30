@@ -5,21 +5,25 @@ node {
     try{
          notifyBuild('STARTED')
          stage('Clone Repo') {
-            // for display purposes
-            // Get some code from a GitHub repository
             git url: 'https://github.com/oussamaZermouq/kubernetestest.git',
                 credentialsId: 'github-creds',
                 branch: 'master'
          }
-          stage('Build docker') {
-                 dockerImage = docker.build("springboot-deploy:${env.BUILD_NUMBER}")
-          }
-
-          stage('Deploy docker'){
-                  echo "Docker Image Tag Name: ${dockerImageTag}"
-                  sh "docker stop springboot-deploy || true && docker rm springboot-deploy || true"
-                  sh "docker run --name springboot-deploy -d -p 8081:8081 springboot-deploy:${env.BUILD_NUMBER}"
-          }
+         stage('Build Maven'){
+            steps{
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-creds', url: 'https://github.com/OussamaZermouq/kubernetestest']])
+                sh 'mvn clean install'
+            }
+         }
+//           stage('Build docker') {
+//                  dockerImage = docker.build("springboot-deploy:${env.BUILD_NUMBER}")
+//           }
+//
+//           stage('Deploy docker'){
+//                   echo "Docker Image Tag Name: ${dockerImageTag}"
+//                   sh "docker stop springboot-deploy || true && docker rm springboot-deploy || true"
+//                   sh "docker run --name springboot-deploy -d -p 8081:8081 springboot-deploy:${env.BUILD_NUMBER}"
+//           }
     }catch(e){
         currentBuild.result = "FAILED"
         throw e
