@@ -20,6 +20,13 @@ pipeline {
                 }
             }
         }
+ 	stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonarqube') { // Use the server name you configured
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
         stage('Push image to dockerHub'){
             steps{
                 script{
