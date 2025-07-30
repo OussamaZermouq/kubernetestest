@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/book")
+@RequestMapping("/api/v2/book")
 public class BookController {
 
     @Autowired
