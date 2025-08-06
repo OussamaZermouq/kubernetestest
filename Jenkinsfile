@@ -20,6 +20,11 @@ pipeline {
                 }
             }
         }
+	stage('Checkmarx Analysis'){
+	    steps{
+		checkmarxASTScanner additionalOptions: '', baseAuthUrl: '', branchName: '', checkmarxInstallation: 'checkmarkx', credentialsId: '', projectName: 'kubernetes-test', serverUrl: '', tenantName: ''
+	    }
+	}
  	stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonarqube') { // Use the server name you configured
