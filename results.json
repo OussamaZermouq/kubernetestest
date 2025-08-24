@@ -1,0 +1,80 @@
+{
+	"kics_version": "v2.1.12",
+	"files_scanned": 1,
+	"lines_scanned": 4,
+	"files_parsed": 1,
+	"lines_parsed": 4,
+	"lines_ignored": 0,
+	"files_failed_to_scan": 0,
+	"queries_total": 48,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 1,
+		"INFO": 0,
+		"LOW": 1,
+		"MEDIUM": 0,
+		"TRACE": 0
+	},
+	"total_counter": 2,
+	"total_bom_resources": 0,
+	"start": "2025-08-02T12:10:43.530471787Z",
+	"end": "2025-08-02T12:11:06.62871059Z",
+	"paths": [
+		"/path"
+	],
+	"queries": [
+		{
+			"query_name": "Missing User Instruction",
+			"query_id": "fd54f200-402c-4333-a5a4-36ef6709af2f",
+			"query_url": "https://docs.docker.com/engine/reference/builder/#user",
+			"severity": "HIGH",
+			"platform": "Dockerfile",
+			"cwe": "250",
+			"category": "Build Process",
+			"experimental": false,
+			"description": "A user should be specified in the dockerfile, otherwise the image will run as root",
+			"description_id": "eb49caf6",
+			"files": [
+				{
+					"file_name": "../../path/Dockerfile",
+					"similarity_id": "d187d02886a113be1b7d66a3de7f40b00159903d0fa348c945ed1b2169192b28",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "FROM={{openjdk:8-jdk-alpine}}",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+					"actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+				}
+			]
+		},
+		{
+			"query_name": "Healthcheck Instruction Missing",
+			"query_id": "b03a748a-542d-44f4-bb86-9199ab4fd2d5",
+			"query_url": "https://docs.docker.com/engine/reference/builder/#healthcheck",
+			"severity": "LOW",
+			"platform": "Dockerfile",
+			"cwe": "710",
+			"category": "Insecure Configurations",
+			"experimental": false,
+			"description": "Ensure that HEALTHCHECK is being used. The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working",
+			"description_id": "426121ee",
+			"files": [
+				{
+					"file_name": "../../path/Dockerfile",
+					"similarity_id": "fedc6b7ab599d134c6ead888f90c2fbb14c2aff655c962a9675f870071d46bbc",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "FROM={{openjdk:8-jdk-alpine}}",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
+					"actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+				}
+			]
+		}
+	]
+}
